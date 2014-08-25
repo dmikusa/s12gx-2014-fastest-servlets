@@ -3,3 +3,13 @@ SimpleWebProject/.settings
 SimpleWebProject/.project
 SimpleWebProject/.gradle
 SimpleWebProject/build
+TomcatInstances/*/lib/*
+!TomcatInstances/*/lib/.gitignore
+TomcatInstances/*/logs/*
+!TomcatInstances/*/logs/.gitignore
+TomcatInstances/*/temp/*
+!TomcatInstances/*/temp/.gitignore
+TomcatInstances/*/webapps/*
+!TomcatInstances/*/webapps/.gitignore
+TomcatInstances/*/work/*
+!TomcatInstances/*/work/.gitignore
