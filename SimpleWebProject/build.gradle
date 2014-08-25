@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Simple Web Stuff', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.tomcat:tomcat-servlet-api:8.0.11'
+}
+
+tasks.withType(JavaCompile) {
+	doFirst {
+		if (sourceCompatibility == '1.7') {
+			options.bootClasspath = "/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home/jre/lib/rt.jar"
+		}
+	}
+}
