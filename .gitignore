@@ -13,3 +13,4 @@ TomcatInstances/*/webapps/*
 !TomcatInstances/*/webapps/.gitignore
 TomcatInstances/*/work/*
 !TomcatInstances/*/work/.gitignore
+apache-tomcat-*
