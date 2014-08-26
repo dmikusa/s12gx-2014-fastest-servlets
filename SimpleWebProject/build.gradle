@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     compile 'org.apache.tomcat:tomcat-servlet-api:8.0.11'
+	compile 'org.thymeleaf:thymeleaf:2.1.2.RELEASE'
 }
 
 tasks.withType(JavaCompile) {
