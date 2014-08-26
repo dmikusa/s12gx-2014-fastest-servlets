@@ -2,6 +2,7 @@
 #!/bin/bash
 
 # Lookup latest version
+echo "Checking for current Tomcat version."
 LATEST_VERSION=$(curl -s http://tomcat.apache.org/download-80.cgi | grep "<h3 id=\"8.0." | xpath '/h3/text()' 2>/dev/null)
 
 # Find download URL
