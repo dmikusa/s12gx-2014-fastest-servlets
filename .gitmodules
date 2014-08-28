@@ -1,0 +1,3 @@
+[submodule "spring-music"]
+	path = spring-music
+	url = git@github.com:dmikusa-pivotal/spring-music.git
