@@ -1,0 +1,22 @@
+set terminal pngcairo size 1280, 720
+set output 'graphs/test-7/client-2-timeseries.png'
+set title "Benchmark Testing - Total Time"
+# Where to place the legend/key
+set key left top
+# Draw gridlines oriented on the y axis
+set grid y
+# Specify that the x-series data is time data
+set xdata time
+# Specify the *input* format of the time data
+set timefmt "%s"
+# Specify the *output* format for the x-axis tick labels
+set format x "%S"
+# Label the x-axis
+set xlabel 'seconds'
+# Label the y-axis
+set ylabel "response time (ms)"
+# Tell gnuplot to use tabs as the delimiter instead of spaces (default)
+set datafile separator '\t'
+# Plot the data
+plot "data/test-7/client-2.tsv" every ::2 using 2:5 title 'response time' with points
+exit

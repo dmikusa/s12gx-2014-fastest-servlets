@@ -1,0 +1,9 @@
+set terminal pngcairo
+set output 'graphs/test-7/client-2-histogram.png'
+set datafile separator '\t'
+set style fill solid border
+set title "Benchmark Testing - Time Breakdown"
+set boxwidth 8 absolute
+set yrange [0:*]
+bin(x) = 10*floor(x/10.0)
+plot 'data/test-7/client-2.tsv' using (bin($5)):(1) every ::1 smooth frequency with boxes title 'ttime'
