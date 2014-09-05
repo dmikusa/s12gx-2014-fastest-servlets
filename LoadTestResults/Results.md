@@ -2,11 +2,10 @@
 
 These tests were all performed with similar parameters.  The goal was to send 50k requests to the Tomcat server from each of two clients and see how Tomcat handles it.  In all of the tests but one, we setup 25 concurent users on each client, for a total of 50 concurrent users.
 
-For all of the tests we are running Tomcat version 8.0.12.  Test 1 to 4 are running an out-of-the-box configuration, with only these two JVM options.
+For all of the tests we are running Tomcat version 8.0.12.  Test 1 to 4 are running an out-of-the-box configuration, with only these two JVM options and the addition of a certification for HTTPS.
 
   - java.net.preferIPv4Stack=true
   - java.security.egd=file:/dev/./urandom
-  - configure HTTPS connector to use certificate
 
 Test 5 - 7 are running on an out-of-the-box configuration with APR.  These are the only customizations.
 
@@ -15,7 +14,7 @@ Test 5 - 7 are running on an out-of-the-box configuration with APR.  These are t
   - Configure HTTPS connector to use APR
   - Configure HTTPS connector to use certificate
 
-The APR library was build with the following configuration.
+The APR library was built with the following configuration.
 
 ```
  ./configure --with-apr=/usr/bin/apr-1-config --with-java-home=/usr/lib/jvm/java-7-openjdk-amd64 --with-ssl
@@ -119,6 +118,13 @@ Percentage of the requests served within a certain time (ms)
   99%     43
  100%    165 (longest request)
 ```
+
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).
+
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-1/client-1-histogram.png)
+
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-1/client-2-histogram.png)
+
 
 ## Test #2 - Small 32KB file w/Keep-Alive
 
