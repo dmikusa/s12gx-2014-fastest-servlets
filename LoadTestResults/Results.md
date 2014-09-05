@@ -121,8 +121,10 @@ Percentage of the requests served within a certain time (ms)
 
 Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).
 
+### Client #1
 ![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-1/client-1-histogram.png)
 
+### Client #2
 ![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-1/client-2-histogram.png)
 
 
