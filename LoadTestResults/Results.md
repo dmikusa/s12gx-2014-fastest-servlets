@@ -119,7 +119,7 @@ Percentage of the requests served within a certain time (ms)
  100%    165 (longest request)
 ```
 
-Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph, the better.
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
 
 #### Client #1
 ![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-1/client-1-histogram.png)
@@ -226,6 +226,22 @@ Percentage of the requests served within a certain time (ms)
  100%    214 (longest request)
 ```
 
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-2/client-1-histogram.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-2/client-2-histogram.png)
+
+Here is a time series graph showing when each request occurred and how long it took.  The x-axis represents the time during the test, while the y-axis represents the length of time that request took.  We're looking to see more marks towards the bottom of the graph as this indicates more requests with short response times.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-2/client-1-timeseries.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-2/client-2-timeseries.png)
+
 ## Test #3 - Medium 107KB File
 
 This test was to download a medium sized 107KB file.  For this test, `ab` was told not to use keep alive.  Here's the command that was run.
@@ -313,6 +329,22 @@ Percentage of the requests served within a certain time (ms)
   99%    304
  100%   3044 (longest request)
 ```
+
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-3/client-1-histogram.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-3/client-2-histogram.png)
+
+Here is a time series graph showing when each request occurred and how long it took.  The x-axis represents the time during the test, while the y-axis represents the length of time that request took.  We're looking to see more marks towards the bottom of the graph as this indicates more requests with short response times.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-3/client-1-timeseries.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-3/client-2-timeseries.png)
 
 ## Test #4 - Big 5Mb File
 
