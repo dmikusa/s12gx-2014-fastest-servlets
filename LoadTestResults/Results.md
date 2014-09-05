@@ -26,12 +26,22 @@ APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [
 OpenSSL successfully initialized (OpenSSL 1.0.1f 6 Jan 2014)
 ```
 
-## Test #1 - Small 32Kb file
+The client machines were Ubuntu 14.04 with the latest kernel & library updates at the time.  The server machine was also running Ubuntu 14.04 with the latest OpenJDK 7.
 
-  - one Tomcat 8.0.12
-  - Test #1 - (50k requests, 25 concurrent per client, no keep-alive, 32Kb file)
-    - ab -n 50000 -c 25 -s 2 -g results.csv http://10.128.104.109:8080/js/bootstrap.min.js
-    - Client #1
+The machines were DigitalOcean VM's running with 2 CPUs & 2G of RAM.  Communication between the VM's was done using DO's private networking option.
+
+
+## Test #1 - Small 32KB File
+
+This test was to download a small 32KB file.  For this test, `ab` was told not to use keep alive.  Here's the command that was run.
+
+```
+ab -n 50000 -c 25 -s 2 -g results.tsv http://10.128.104.109:8080/js/bootstrap.min.js
+```
+
+Here's the output from Client #1.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -67,7 +77,11 @@ Percentage of the requests served within a certain time (ms)
   98%     37
   99%     42
  100%    122 (longest request)
-    - Client #2
+```
+
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -104,10 +118,19 @@ Percentage of the requests served within a certain time (ms)
   98%     38
   99%     43
  100%    165 (longest request)
+```
 
-  - Test #2 - (50k requests, 25 concurrent per client, with keep-alive)
-    - ab -n 50000 -c 25 -s 2 -g results.csv -k http://10.128.104.109:8080/js/bootstrap.min.js
-    - Client #1
+## Test #2 - Small 32KB file w/Keep-Alive
+
+This test was to download a small 32KB file.  For this test, `ab` was told to use keep alive (`-k`).  Here's the command that was run.
+
+```
+ab -n 50000 -c 25 -s 2 -g results.tsv -k http://10.128.104.109:8080/js/bootstrap.min.js
+```
+
+Here's the output from Client #1.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -144,7 +167,11 @@ Percentage of the requests served within a certain time (ms)
   98%     35
   99%     46
  100%    167 (longest request)
-    - Client #2
+```
+
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -180,12 +207,20 @@ Percentage of the requests served within a certain time (ms)
   95%     24
   98%     35
   99%     46
- 100%    214 (longest request):N
+ 100%    214 (longest request)
+```
 
+## Test #3 - Medium 107KB File
 
-  - Test #3 - (50k requests, 25 concurrent per client, no keep-alive)
-    - ab -n 50000 -c 25 -s 2 -g results.tsv http://10.128.104.109:8080/css/bootstrap.min.css
-    - Client #1
+This test was to download a medium sized 107KB file.  For this test, `ab` was told not to use keep alive.  Here's the command that was run.
+
+```
+ab -n 50000 -c 25 -s 2 -g results.tsv http://10.128.104.109:8080/css/bootstrap.min.css
+```
+
+Here's the output from Client #1.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -221,8 +256,11 @@ Percentage of the requests served within a certain time (ms)
   98%     66
   99%    300
  100%   3064 (longest request)
+```
 
-    - Client #2
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -258,11 +296,21 @@ Percentage of the requests served within a certain time (ms)
   98%     68
   99%    304
  100%   3044 (longest request)
+```
 
-  - Test #4 - (50k requests, 25 concurrent per client, no keep-alive)
-    - ab -n 50000 -c 500 -s 2 -g results.tsv http://10.128.104.109:8080/big-file.dat
-    
-  - Client #1
+## Test #4 - Big 5Mb File
+
+This test was to download a large 5MB file.  For this test, `ab` was told not to use keep alive (`-k`).  It was also instructed to make 500 concurrent connections instead of the usual 25.  This was done because downloading the big file takes more time, even on a fast network, and it helped to stress the CPU on the server more.
+
+Here's the command that was run.
+
+```
+ab -n 50000 -c 500 -s 2 -g results.tsv http://10.128.104.109:8080/big-file.dat
+```
+
+Here's the output from Client #1
+
+```  
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -299,8 +347,11 @@ Percentage of the requests served within a certain time (ms)
   98%  58447
   99%  60571
  100%  79209 (longest request)
+```
 
-  - Client #2
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -337,11 +388,19 @@ Percentage of the requests served within a certain time (ms)
   98%  58705
   99%  60841
  100%  88550 (longest request)
+```
 
+## Test #5 - Small file over SSL
 
-  - Test #5 - (50k requests, 25 concurrent per client, with keep-alive)
-    - ab -n 50000 -c 25 -s 2 -g results.tsv -k -f TLS1.2 https://10.128.104.109:8443/js/bootstrap.min.js
-  - Client #1
+This test was to download a small sized 32KB file (same as #1), but over SSL.  For this test, Tomcat was configured to use the NIO Connector with SSL provided by the JDK.  Here's the command that was run to test.
+
+```
+ab -n 50000 -c 25 -s 2 -g results.tsv -k -f TLS1.2 https://10.128.104.109:8443/js/bootstrap.min.js
+```
+
+Here's the output from Client #1.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8443
@@ -379,8 +438,11 @@ Percentage of the requests served within a certain time (ms)
   98%    171
   99%   1210
  100%   3523 (longest request)
+```
 
-  - Client #2
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8443
@@ -418,11 +480,19 @@ Percentage of the requests served within a certain time (ms)
   98%    171
   99%   1041
  100%   3875 (longest request)
+```
 
+## Test #6 - Small file w/APR
 
-  - Test #6 - (50k requests, 25 concurrent per client, with keep-alive) (APR small file)
-   - ab -n 50000 -c 25 -s 2 -g results.tsv -k http://10.128.104.109:8080/js/bootstrap.min.js
-   - Client #1
+This test was to download a small sized 32KB file (same as #1), but for this test Tomcat has been configured to use the APR Connector.  Here's the command that was run to test.
+
+```
+ab -n 50000 -c 25 -s 2 -g results.tsv -k http://10.128.104.109:8080/js/bootstrap.min.js
+```
+
+Here's the output from Client #1.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -459,8 +529,11 @@ Percentage of the requests served within a certain time (ms)
   98%     26
   99%     33
  100%    108 (longest request)
+```
 
-   - Client #2
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8080
@@ -497,11 +570,19 @@ Percentage of the requests served within a certain time (ms)
   98%     26
   99%     32
  100%    118 (longest request)
+```
 
+## Test #7 - Small file w/APR over SSL
 
-  - Test #7 - (50k requests, 25 concurrent per client, with keep-alive) (APR SSL)
-   - ab -n 50000 -c 25 -s 2 -g results.tsv -k -f TLS1.2 -Z "ECDHE-RSA-AES256-SHA384" https://10.128.104.109:8443/js/bootstrap.min.js
-   - Client #1
+This test was to download a small sized 32KB file (same as #1), but over SSL.  For this test, Tomcat was configured to use the APR Connector with SSL provided by OpenSSL.  Here's the command that was run to test.
+
+```
+ab -n 50000 -c 25 -s 2 -g results.tsv -k -f TLS1.2 -Z "ECDHE-RSA-AES256-SHA384" https://10.128.104.109:8443/js/bootstrap.min.js
+```
+
+Here's the output from Client #1.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8443
@@ -539,8 +620,11 @@ Percentage of the requests served within a certain time (ms)
   98%    106
   99%    158
  100%    759 (longest request)
+```
 
-   - Client #2
+Here's the output from Client #2.
+
+```
 Server Software:        Apache-Coyote/1.1
 Server Hostname:        10.128.104.109
 Server Port:            8443
@@ -578,14 +662,11 @@ Percentage of the requests served within a certain time (ms)
   98%    106
   99%    166
  100%    813 (longest request)
+```
 
+## Notes
 
-  - Conclusions
-      - With the 32Kb file, CPU usage was initially maxed out at 200%, after a few seconds dropped to between 150 & 175% (likely due to JIT)
-      - With the 107Kb file, CPU usage was around 125 - 130%
-      - CPU usage was higher with the smaller file (32Kb) versus the 107Kb file.  
-      - CPU usage was very low with the big file (5Mb), possibly due to send file support.  Bumping up the clients could get to a 50 - 75% cpu usage, but saturates the network at 1Gbps.
-      - CPU usage is maxed out at 200% with SSL enabled (NIO & SSL)
-      - CPU usage with APR and small files is around 130% (around 20% less than w/NIO)
-      - CPU usage with APR & SSL on small files is right around 200%
-
+  - CPU usage is initially higher when the server starts (probably due to the JIT).  After starting the server, I needed to run a few rounds of the test to stabilize things.
+  - CPU usage was lower with larger files, possibly due to Tomcat's sendfile support or just due to the fact that transferring the files over the network slows things down.  In fact, while testing the big file download, I had to bump up the number of clients significantly to get any increase in CPU usage.
+  - During the large file test, Tomcat was able to saturate the 1Gbps network connection at roughly 50 - 75% CPU utilization.
+  - Using the APR connector showed roughly a 20% reduction in CPU over the NIO connector when serving small files.
