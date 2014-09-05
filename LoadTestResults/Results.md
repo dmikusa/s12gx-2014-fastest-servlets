@@ -438,6 +438,22 @@ Percentage of the requests served within a certain time (ms)
  100%  88550 (longest request)
 ```
 
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-4/client-1-histogram.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-4/client-2-histogram.png)
+
+Here is a time series graph showing when each request occurred and how long it took.  The x-axis represents the time during the test, while the y-axis represents the length of time that request took.  We're looking to see more marks towards the bottom of the graph as this indicates more requests with short response times.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-4/client-1-timeseries.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-4/client-2-timeseries.png)
+
 ## Test #5 - Small file over SSL
 
 This test was to download a small sized 32KB file (same as #1), but over SSL.  For this test, Tomcat was configured to use the NIO Connector with SSL provided by the JDK.  Here's the command that was run to test.
@@ -530,6 +546,22 @@ Percentage of the requests served within a certain time (ms)
  100%   3875 (longest request)
 ```
 
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-5/client-1-histogram.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-5/client-2-histogram.png)
+
+Here is a time series graph showing when each request occurred and how long it took.  The x-axis represents the time during the test, while the y-axis represents the length of time that request took.  We're looking to see more marks towards the bottom of the graph as this indicates more requests with short response times.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-5/client-1-timeseries.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-5/client-2-timeseries.png)
+
 ## Test #6 - Small file w/APR
 
 This test was to download a small sized 32KB file (same as #1), but for this test Tomcat has been configured to use the APR Connector.  Here's the command that was run to test.
@@ -619,6 +651,22 @@ Percentage of the requests served within a certain time (ms)
   99%     32
  100%    118 (longest request)
 ```
+
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-6/client-1-histogram.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-6/client-2-histogram.png)
+
+Here is a time series graph showing when each request occurred and how long it took.  The x-axis represents the time during the test, while the y-axis represents the length of time that request took.  We're looking to see more marks towards the bottom of the graph as this indicates more requests with short response times.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-6/client-1-timeseries.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-6/client-2-timeseries.png)
 
 ## Test #7 - Small file w/APR over SSL
 
@@ -711,6 +759,22 @@ Percentage of the requests served within a certain time (ms)
   99%    166
  100%    813 (longest request)
 ```
+
+Here are the graphs showing the break down of how quickly responses were handled.  The x-axis represents the amount of time a request took.  The y-axis represents how many requests fell into that bucket (10 second group).  Larger the bars on the left side of the graph are better.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-7/client-1-histogram.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-7/client-2-histogram.png)
+
+Here is a time series graph showing when each request occurred and how long it took.  The x-axis represents the time during the test, while the y-axis represents the length of time that request took.  We're looking to see more marks towards the bottom of the graph as this indicates more requests with short response times.
+
+#### Client #1
+![Client #1](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-7/client-1-timeseries.png)
+
+#### Client #2
+![Client #2](https://raw.githubusercontent.com/dmikusa-pivotal/s12gx-2014-fastest-servlets/master/LoadTestResults/graphs/test-7/client-2-timeseries.png)
 
 ## Notes
 
