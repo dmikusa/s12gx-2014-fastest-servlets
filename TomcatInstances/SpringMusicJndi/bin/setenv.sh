@@ -1,0 +1,1 @@
+export SPRING_PROFILES_ACTIVE="jndi"
